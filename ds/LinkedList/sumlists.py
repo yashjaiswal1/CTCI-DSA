@@ -45,19 +45,12 @@ def sumLists(llist1, llist2):
     ptr2 = llist2.head
     ptr3 = result
     carry = 0
-    sum_of_nodes = 0
-    while(ptr1 != None and ptr2 != None):
-        if(ptr1):
-            sum_of_nodes += ptr1.data
-            ptr1 = ptr1.next
-        if(ptr2):
-            sum_of_nodes += ptr2.data
-            ptr2 = ptr2.next
-        sum_of_nodes += carry
-        print(sum_of_nodes)
+    while(ptr1 != None):
+        sum_of_nodes = ptr1.data + ptr2.data + carry
+        ptr1 = ptr1.next
+        ptr2 = ptr2.next
         if(len(str(sum_of_nodes)) == 1):
             ptr3.append(sum_of_nodes)
-            carry = 0
         elif(len(str(sum_of_nodes)) == 2 and ptr1 == None):
             ptr3.append(int(sum_of_nodes % 10))
             ptr3.append(int(sum_of_nodes // 10))
@@ -68,9 +61,12 @@ def sumLists(llist1, llist2):
 
 
 Number1 = LinkedList()
-Number1.append(0)
-Number1.append(1)
+Number1.append(9)
+Number1.append(9)
+Number1.append(9)
 Number2 = LinkedList()
-Number2.append(5)
+Number2.append(9)
+Number2.append(9)
+Number2.append(9)
 result_list = sumLists(Number1, Number2)
 result_list.displayList()
