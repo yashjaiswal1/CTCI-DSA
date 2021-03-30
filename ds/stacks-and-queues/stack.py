@@ -1,3 +1,4 @@
+# Lafore
 # Implementation of stack using python lists without .append() and .pop()
 # ask interviewer if you can use append() & pop() or not and act accordingly
 class Stack:
