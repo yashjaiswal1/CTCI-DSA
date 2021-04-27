@@ -24,7 +24,6 @@ class SetOfStacks:
 
     def pop(self):
         current_stack = self.getLastStack()
-
         if (self.set_of_stacks == []):
             print("Stack Underflow!")
             return
@@ -35,6 +34,22 @@ class SetOfStacks:
             self.set_of_stacks.pop()
 
         return popped_element
+
+    def popAt(self, index):
+        if self.set_of_stacks[-1] == self.set_of_stacks[index]:
+            return self.pop()
+        else:
+            pointer = index
+            while(pointer < len(self.set_of_stacks)):
+                if pointer == index:
+                    popped_element = self.set_of_stacks[index].pop()
+                else:
+                    rollover_element = self.set_of_stacks[pointer].popleft()
+                    self.set_of_stacks[pointer - 1].append(rollover_element)
+                pointer += 1
+            if self.getLastStack() == deque([]):
+                self.set_of_stacks.pop()
+            return popped_element
 
 
 StackOfPlates = SetOfStacks(3)
@@ -54,18 +69,22 @@ StackOfPlates.push(60)
 print(StackOfPlates.set_of_stacks)
 StackOfPlates.push(70)
 print(StackOfPlates.set_of_stacks)
-StackOfPlates.pop()
+# StackOfPlates.pop()
+# print(StackOfPlates.set_of_stacks)
+# StackOfPlates.pop()
+# print(StackOfPlates.set_of_stacks)
+# StackOfPlates.pop()
+# print(StackOfPlates.set_of_stacks)
+# StackOfPlates.pop()
+# print(StackOfPlates.set_of_stacks)
+# StackOfPlates.pop()
+# print(StackOfPlates.set_of_stacks)
+# StackOfPlates.pop()
+# print(StackOfPlates.set_of_stacks)
+# StackOfPlates.pop()
+# print(StackOfPlates.set_of_stacks)
+# StackOfPlates.pop()
+# StackOfPlates.popAt(2)
+# print(StackOfPlates.set_of_stacks)
+StackOfPlates.popAt(0)
 print(StackOfPlates.set_of_stacks)
-StackOfPlates.pop()
-print(StackOfPlates.set_of_stacks)
-StackOfPlates.pop()
-print(StackOfPlates.set_of_stacks)
-StackOfPlates.pop()
-print(StackOfPlates.set_of_stacks)
-StackOfPlates.pop()
-print(StackOfPlates.set_of_stacks)
-StackOfPlates.pop()
-print(StackOfPlates.set_of_stacks)
-StackOfPlates.pop()
-print(StackOfPlates.set_of_stacks)
-StackOfPlates.pop()
