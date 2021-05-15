@@ -44,5 +44,6 @@ print(sensor2(5, 10, 2))
 T = int(input())
 for _ in range(T):
     L, R, X = map(int, input().split())
+    print(L, R, X)
     out_ = solve(L, R, X)
     print(out_)
