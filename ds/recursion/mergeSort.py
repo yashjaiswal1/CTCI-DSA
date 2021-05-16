@@ -34,17 +34,22 @@ def merge(list1, list2):
     return result
 
 
+# the array can be provided as an additional third argument as per the requirement
+# here, I personally didn't include it so as to reduce the internal memory stack size
 def mergesort(low, high):
     """
     Returns the sorted array given the lowest and highest indices of the array.
     """
-    if low < high:
+
+    # base caase occurs when low = high
+    if low == high:
+        return [arr[low]]
+
+    else:
         mid = (low+high)//2
         l1 = mergesort(low, mid)
         l2 = mergesort(mid+1, high)
         return merge(l1, l2)
-    else:
-        return [arr[low]]
 
 
 # custom test cases
