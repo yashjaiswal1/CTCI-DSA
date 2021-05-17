@@ -1,11 +1,13 @@
 # Approach to calculate power of any given number in (log n) time
 # Simplified formula for calculating powers: (number)^power is equivalent to (number^2)^power/2 -- basically multiply and divide by 2 for the power
 # Example: 2^8 is equal to (2^2)^8/2 = (2^2)^4
-def power(x, y):
+
+def power(x, y, total_calls=0):
     if y == 1:
+        print("Total recursive calls = " + str(total_calls))
         return x
     else:
-        result = power(x*x, y//2)
+        result = power(x*x, y//2, total_calls+1)
         if y % 2 == 1:
             result *= x
         return result
