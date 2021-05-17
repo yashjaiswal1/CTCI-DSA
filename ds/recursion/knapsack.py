@@ -51,7 +51,8 @@ def knapsack(weights, target_weight):
     return []
 
 
+# More test cases are required
 print(knapsack([11, 8, 7, 6, 5], 20))
 print(knapsack([11, 8, 7, 6, 5], 21))
 print(knapsack([11, 8, 7, 6, 5], 22))
-print(knapsack([11, 8, 7, 6, 5], 22))
+print(knapsack([11, 8, 7, 6, 5], 25))
