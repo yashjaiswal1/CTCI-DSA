@@ -14,7 +14,7 @@ class Tree:
 
     def find_key(self, key):
         """
-        Returns a reference to the required node if the key if matched,
+        Returns a reference to the required node if the key is matched,
         else, it returns None
 
         Efficiency: O(log N) --- base 2 logarithm
@@ -58,14 +58,43 @@ class Tree:
                         parent.rightChild = new_node
                         return
 
+    def inOrder(self, localRoot):
+        # inorder will give an ascending order only if the tree is a BST!
+        if localRoot != None:
+            self.inOrder(localRoot.leftChild)
+            print("Visited node " + str(localRoot.idata))
+            self.inOrder(localRoot.rightChild)
 
-n1 = Node(5, 10)
-n2 = Node(6, 20)
-n3 = Node(4, 30)
-n1.leftChild = n3
-n1.rightChild = n2
+    def preOrder(self, localRoot):
+        if localRoot != None:
+            print("Visited node " + str(localRoot.idata))
+            self.preOrder(localRoot.leftChild)
+            self.preOrder(localRoot.rightChild)
+
+    def postOrder(self, localRoot):
+        if localRoot != None:
+            self.postOrder(localRoot.leftChild)
+            self.postOrder(localRoot.rightChild)
+            print("Visited node " + str(localRoot.idata))
+
+
+n1 = Node(10, 10)
+n2 = Node(5, 20)
+n3 = Node(20, 30)
+n1.leftChild = n2
+n1.rightChild = n3
 mytree = Tree()
 mytree.root = n1
-mytree.insert_node(8, 40)
-answer = mytree.find_key(8)
+mytree.insert_node(15, 40)
+mytree.insert_node(25, 50)
+answer = mytree.find_key(25)
 print(answer.idata, answer.fdata)
+
+print("\nINORDER TRAVERSAL")
+mytree.inOrder(mytree.root)
+
+print("\nPREORDER TRAVERSAL")
+mytree.preOrder(mytree.root)
+
+print("\nPOSTORDER TRAVERSAL")
+mytree.postOrder(mytree.root)
