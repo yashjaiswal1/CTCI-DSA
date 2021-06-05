@@ -184,3 +184,6 @@ mytree.postOrder(mytree.root)
 print("\n")
 print("Minimum value = " + str(mytree.minimum().idata))
 print("Maximum value = " + str(mytree.maximum().idata))
+
+mytree.delete(15)
+print(mytree.find_key(15))
