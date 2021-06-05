@@ -77,6 +77,89 @@ class Tree:
             self.postOrder(localRoot.rightChild)
             print("Visited node " + str(localRoot.idata))
 
+    def minimum(self):
+        current = self.root
+        while current.leftChild != None:
+            current = current.leftChild
+        return current
+
+    def maximum(self):
+        current = self.root
+        while current.rightChild != None:
+            current = current.rightChild
+        return current
+
+    def getSuccessor(self, delNode):
+        successor = None
+        successorParent = delNode
+        current = delNode.rightChild
+        while current.leftChild != None:
+            successorParent = current
+            current = current.leftChild
+        successor = current
+
+        if successor != delNode.rightChild:
+            successorParent.leftChild = successor.rightChild
+            successor.rightChild = delNode.rightChild
+        return successor
+
+    def delete(self, key):
+        current = self.root
+        parent = None
+        isLeftChild = True
+        while current.idata != key:
+            parent = current
+            if key < current.idata:
+                isLeftChild = True
+                current = current.leftChild
+
+            elif key > current.idata:
+                isLeftChild = False
+                current = current.rightChild
+            if current == None:
+                return False
+
+        no_child_condition = (current.leftChild ==
+                              None and current.rightChild == None)
+        left_child_only = (current.rightChild == None)
+        right_child_only = (current.leftChild == None)
+
+        if no_child_condition:
+            if current == self.root:
+                self.root = None
+            elif isLeftChild:
+                parent.leftChild = None
+            else:
+                parent.rightChild = None
+
+        elif left_child_only:
+            if current == self.root:
+                self.root = current.leftChild
+            elif isLeftChild:
+                parent.leftChild = current.leftChild
+            else:
+                parent.rightChild = current.leftChild
+
+        elif right_child_only:
+            if current == self.root:
+                self.root = current.rightChild
+            elif isLeftChild:
+                parent.leftChild = current.rightChild
+            else:
+                parent.rightChild = current.rightChild
+
+        else:
+            successor = self.getSuccessor(current)
+            if current == self.root:
+                self.root = successor
+            elif isLeftChild:
+                parent.leftChild = successor
+            else:
+                parent.rightChild = successor
+            successor.leftChild = current.leftChild
+
+        return True
+
 
 n1 = Node(10, 10)
 n2 = Node(5, 20)
@@ -98,3 +181,6 @@ mytree.preOrder(mytree.root)
 
 print("\nPOSTORDER TRAVERSAL")
 mytree.postOrder(mytree.root)
+print("\n")
+print("Minimum value = " + str(mytree.minimum().idata))
+print("Maximum value = " + str(mytree.maximum().idata))
