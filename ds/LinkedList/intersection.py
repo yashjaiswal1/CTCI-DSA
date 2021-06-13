@@ -66,11 +66,11 @@ def getIntersection(llist1, llist2):
             difference -= 1
 
     # traverse until collision
-    while llist1 != llist2:
+    while llist1 != llist2 and llist1 != None and llist2 != None:
         llist1 = llist1.next
         llist2 = llist2.next
 
-    return llist1
+    return None if llist1 == None or llist2 == None else llist1
 
 
 n1 = Node(15)
