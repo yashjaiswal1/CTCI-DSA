@@ -95,4 +95,4 @@ list2.push(n8)
 list2.push(n9)
 list2.push(n3)  # collision node
 
-print(getIntersection(llist1=n1, llist2=n6).data)
+print(getIntersection(llist1=list1.head, llist2=list2.head).data)
